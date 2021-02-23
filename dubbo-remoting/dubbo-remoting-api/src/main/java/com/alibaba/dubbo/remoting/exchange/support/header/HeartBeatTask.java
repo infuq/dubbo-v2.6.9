@@ -57,6 +57,9 @@ final class HeartBeatTask implements Runnable {
                             HeaderExchangeHandler.KEY_WRITE_TIMESTAMP);
                     if ((lastRead != null && now - lastRead > heartbeat)
                             || (lastWrite != null && now - lastWrite > heartbeat)) {
+
+                        logger.info(Thread.currentThread().getName() + "发送心跳包...");
+
                         Request req = new Request();
                         req.setVersion(Version.getProtocolVersion());
                         req.setTwoWay(true);
@@ -78,6 +81,7 @@ final class HeartBeatTask implements Runnable {
                             }
                         } else {
                             channel.close();
+                            logger.info(Thread.currentThread().getName() + "关闭连接");
                         }
                     }
                 } catch (Throwable t) {
