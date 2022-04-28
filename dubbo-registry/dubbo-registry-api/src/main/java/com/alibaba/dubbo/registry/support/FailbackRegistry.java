@@ -71,6 +71,7 @@ public abstract class FailbackRegistry extends AbstractRegistry {
             public void run() {
                 // Check and connect to the registry
                 try {
+                    logger.info(Thread.currentThread().getName() + "执行retry...");
                     retry();
                 } catch (Throwable t) { // Defensive fault tolerance
                     logger.error("Unexpected error occur at failed retry, cause: " + t.getMessage(), t);

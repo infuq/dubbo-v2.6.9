@@ -16,7 +16,7 @@ public class DubboConsumer {
         Object ret = queryUserInfoFacade.update("hangzhou");
         System.out.println("Dubbo接口调用返回值:" + ret);
 
-        System.in.read();
+//        System.in.read();
 
     }
 }

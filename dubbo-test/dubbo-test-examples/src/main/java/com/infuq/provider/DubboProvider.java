@@ -19,7 +19,7 @@ public class DubboProvider {
 
             System.in.read();
 
-            // invoke com.infuq.facade.QueryUserInfoFacade.update("2020")
+            // invoke com.infuq.provider.QueryUserInfoFacade.update("2020")
 
         } catch (Exception x) {
             System.out.println(x.getMessage());

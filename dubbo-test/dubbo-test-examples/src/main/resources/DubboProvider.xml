@@ -12,8 +12,8 @@
 
 
     <dubbo:application name="infuq-dubbo-provider" />
-    <dubbo:registry protocol="zookeeper" address="192.168.0.101:2181" check="false" />
-<!--    <dubbo:registry protocol="zookeeper" address="127.0.0.1:2181" check="false" />-->
+<!--    <dubbo:registry protocol="zookeeper" address="192.168.0.101:2181" check="false" />-->
+    <dubbo:registry protocol="zookeeper" address="zk.infuq.com:2181" check="false"/>
     <dubbo:protocol name="dubbo" port="20880" threads="200" threadpool="fixed"  /><!-- telnet 127.0.0.1 20880 -->
 
     <dubbo:service ref="queryUserInfoFacade" interface="com.infuq.provider.QueryUserInfoFacade" version="1.0.0" />

@@ -181,6 +181,9 @@
             <version>${cglib_version}</version>
             <scope>test</scope>
         </dependency>
+
+
+
     </dependencies>
 
     <profiles>

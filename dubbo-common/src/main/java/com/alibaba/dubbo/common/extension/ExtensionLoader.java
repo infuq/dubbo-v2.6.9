@@ -293,9 +293,13 @@ public class ExtensionLoader<T> {
     public T getExtension(String name) {
         if (name == null || name.length() == 0)
             throw new IllegalArgumentException("Extension name == null");
+
         if ("true".equals(name)) {
             return getDefaultExtension();
         }
+
+        // 从缓存中取值
+        // ConcurrentMap<String, Holder<Object>>
         Holder<Object> holder = cachedInstances.get(name);
         if (holder == null) {
             cachedInstances.putIfAbsent(name, new Holder<Object>());
@@ -306,6 +310,7 @@ public class ExtensionLoader<T> {
             synchronized (holder) {
                 instance = holder.get();
                 if (instance == null) {
+                    // 创建
                     instance = createExtension(name);
                     holder.set(instance);
                 }
@@ -484,7 +489,11 @@ public class ExtensionLoader<T> {
 
     @SuppressWarnings("unchecked")
     private T createExtension(String name) {
-        Class<?> clazz = getExtensionClasses().get(name);
+
+        Map<String, Class<?>> classes = getExtensionClasses();
+
+        Class<?> clazz = classes.get(name);
+
         if (clazz == null) {
             throw findException(name);
         }
@@ -494,7 +503,11 @@ public class ExtensionLoader<T> {
                 EXTENSION_INSTANCES.putIfAbsent(clazz, clazz.newInstance());
                 instance = (T) EXTENSION_INSTANCES.get(clazz);
             }
+
+            // 依赖注入
             injectExtension(instance);
+
+            // 包装
             Set<Class<?>> wrapperClasses = cachedWrapperClasses;
             if (wrapperClasses != null && !wrapperClasses.isEmpty()) {
                 for (Class<?> wrapperClass : wrapperClasses) {
@@ -558,6 +571,7 @@ public class ExtensionLoader<T> {
             synchronized (cachedClasses) {
                 classes = cachedClasses.get();
                 if (classes == null) {
+                    // 获取当前ExtensionLoader对应的type=接口的在文件中的键值对的实现类
                     classes = loadExtensionClasses();
                     cachedClasses.set(classes);
                 }

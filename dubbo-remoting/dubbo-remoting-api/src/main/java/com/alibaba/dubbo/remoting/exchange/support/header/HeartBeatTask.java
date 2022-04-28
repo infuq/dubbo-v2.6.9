@@ -76,6 +76,7 @@ final class HeartBeatTask implements Runnable {
                         if (channel instanceof Client) {
                             try {
                                 ((Client) channel).reconnect();
+                                logger.info(Thread.currentThread().getName() + "重连");
                             } catch (Exception e) {
                                 //do nothing
                             }

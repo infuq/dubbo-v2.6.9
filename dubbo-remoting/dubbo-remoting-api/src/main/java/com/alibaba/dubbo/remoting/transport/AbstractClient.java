@@ -159,7 +159,11 @@ public abstract class AbstractClient extends AbstractEndpoint implements Client 
                 @Override
                 public void run() {
                     try {
+
+                        System.out.println(Thread.currentThread().getName() + "执行重连...");
+
                         if (!isConnected()) {
+                            System.out.println(Thread.currentThread().getName() + "重连了...");
                             connect();
                         } else {
                             lastConnectedTime = System.currentTimeMillis();
