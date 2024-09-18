@@ -1,8 +1,8 @@
 package com.infuq.provider;
 
-import org.springframework.stereotype.Service;
+import com.alibaba.dubbo.config.annotation.Service;
 
-@Service("queryUserInfoFacade")
+@Service
 public class QueryUserInfoFacadeImpl implements QueryUserInfoFacade {
 
 
