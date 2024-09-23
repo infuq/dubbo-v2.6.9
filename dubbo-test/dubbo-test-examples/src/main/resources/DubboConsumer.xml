@@ -12,7 +12,7 @@
     <dubbo:application name="infuq-dubbo-consumer" />
     <dubbo:registry protocol="zookeeper" address="t.infuq.com:2181" check="false"/>
 
-    <dubbo:reference id="queryUserInfoFacade" interface="com.infuq.provider.QueryUserInfoFacade"
+    <dubbo:reference id="queryUserInfoFacade" interface="com.infuq.facade.UserFacade"
                      version="1.0.0" check="false" timeout="5000000" />
 
 

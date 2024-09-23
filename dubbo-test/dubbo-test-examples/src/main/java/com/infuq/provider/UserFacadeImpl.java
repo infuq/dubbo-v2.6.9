@@ -1,9 +1,8 @@
 package com.infuq.provider;
 
-import com.alibaba.dubbo.config.annotation.Service;
+import com.infuq.facade.UserFacade;
 
-@Service
-public class QueryUserInfoFacadeImpl implements QueryUserInfoFacade {
+public class UserFacadeImpl implements UserFacade {
 
 
     @Override

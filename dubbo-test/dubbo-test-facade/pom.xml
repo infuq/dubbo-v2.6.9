@@ -30,18 +30,44 @@
     </properties>
 
 
+<!--    <build>-->
+<!--        <resources>-->
+<!--            <resource>-->
+<!--                <directory>${basedir}/src/main/java</directory>-->
+<!--                <excludes>-->
+<!--                    <exclude>**/*.java</exclude>-->
+<!--                </excludes>-->
+<!--            </resource>-->
+<!--            <resource>-->
+<!--                <directory>${basedir}/src/main/resources</directory>-->
+<!--            </resource>-->
+<!--        </resources>-->
+<!--    </build>-->
+
     <build>
-        <resources>
-            <resource>
-                <directory>${basedir}/src/main/java</directory>
-                <excludes>
-                    <exclude>**/*.java</exclude>
-                </excludes>
-            </resource>
-            <resource>
-                <directory>${basedir}/src/main/resources</directory>
-            </resource>
-        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.1</version>
+                <configuration>
+                    <attach>true</attach>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.7</version>
+            </plugin>
+        </plugins>
     </build>
 
 </project>

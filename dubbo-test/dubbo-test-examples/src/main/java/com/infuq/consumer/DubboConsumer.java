@@ -1,6 +1,6 @@
 package com.infuq.consumer;
 
-import com.infuq.provider.QueryUserInfoFacade;
+import com.infuq.facade.UserFacade;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -12,7 +12,7 @@ public class DubboConsumer {
 
         ApplicationContext context = new ClassPathXmlApplicationContext("DubboConsumer.xml");
 
-        QueryUserInfoFacade queryUserInfoFacade = context.getBean(QueryUserInfoFacade.class);
+        UserFacade queryUserInfoFacade = context.getBean(UserFacade.class);
         Object ret = queryUserInfoFacade.update("hangzhou");
         System.out.println("Dubbo接口调用返回值:" + ret);
 
